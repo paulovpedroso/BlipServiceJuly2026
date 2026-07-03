@@ -222,6 +222,35 @@ nav.scrolled{border-bottom:1px solid var(--line);background:rgba(5,7,15,.9)}
 .try-qr .qr{width:176px;height:176px;padding:14px;background:#fff;border:1px solid var(--l-line);border-radius:18px;box-shadow:0 12px 34px rgba(10,40,90,.08)}
 .try-qr .num{display:block;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--black);font-variant-numeric:tabular-nums}
 .try-qr .lbl{display:block;font-size:11px;color:var(--l-mut);font-weight:400;margin-top:3px}
+/* tech block */
+.tech-block{margin-top:70px;border-top:1px solid var(--l-line);padding-top:64px}
+.tech-block h3{font-size:clamp(22px,2.8vw,30px);color:var(--black);letter-spacing:-.02em;margin:12px 0 14px}
+.tech-block .tl{font-size:15px;color:var(--l-txt);font-weight:300;max-width:78ch;line-height:1.65}
+.tech-block .tl code,.auth-card p code{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:.88em;background:#EDF3FD;border:1px solid var(--l-line);border-radius:5px;padding:1px 6px;color:var(--blip-deep)}
+.auth-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px}
+@media(max-width:880px){.auth-grid{grid-template-columns:1fr}}
+.auth-card{background:#fff;border:1px solid var(--l-line);border-radius:18px;padding:28px}
+.auth-card .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--l-mut)}
+.auth-card h4{font-size:18px;font-weight:600;color:var(--black);margin:10px 0 12px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;letter-spacing:-.01em}
+.auth-card ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.auth-card li{font-size:13.5px;color:var(--l-txt);font-weight:300;padding-left:20px;position:relative;line-height:1.5}
+.auth-card li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:#C9D6EC}
+.auth-card.hl{border:1.5px solid var(--blip-deep);box-shadow:0 20px 50px rgba(10,77,224,.10)}
+.auth-card.hl .k{color:var(--blip-deep)}
+.auth-card.hl li::before{background:var(--blip-deep)}
+.code-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+@media(max-width:880px){.code-grid{grid-template-columns:1fr}}
+.code-box{background:var(--black-2);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden}
+.code-box .cb-top{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
+.code-box .cb-top span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--mut)}
+.code-box .cb-top .dots{display:flex;gap:5px}
+.code-box .cb-top .dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.14);display:block}
+.code-box pre{margin:0;padding:20px 22px;overflow-x:auto;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12.4px;line-height:1.7;color:#C9D4EA}
+.code-box .kw{color:#7FB5FF}
+.code-box .st{color:#7CE3B3}
+.code-box .cm{color:#5E6B8C}
+.tech-note{margin-top:26px;font-size:13px;color:var(--l-mut);font-weight:300;max-width:90ch;line-height:1.6}
+.tech-note b{color:var(--l-txt);font-weight:600}
 .sheet .grab{width:38px;height:4px;border-radius:100px;background:#D6DCE6;margin:9px auto 4px;flex-shrink:0}
 .sheet-head{padding:8px 16px 12px;border-bottom:1px solid #EDF0F5;display:flex;align-items:center;gap:10px;flex-shrink:0}
 .sheet-head .sav{width:30px;height:30px;border-radius:9px;background:linear-gradient(140deg,var(--blip),var(--blip-deep));display:flex;align-items:center;justify-content:center}
@@ -322,7 +351,6 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
         <a href="#p2">Pilar 02</a>
         <a href="#p3">Pilar 03</a>
         <a href="#p4">Pilar 04</a>
-        <a href="#contato">Contato</a>
       </div>
       <a class="nav-cta" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing/non-template-messages" target="_blank" rel="noopener">Report Oficial Meta<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
     </div>
@@ -594,6 +622,64 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
         <span class="num">+55 11 96068-7558</span>
         <span class="lbl">Ambiente de demonstração Blip</span>
       </div>
+    </div>
+    <div class="tech-block reveal">
+      <div class="try-k">Implementação · Blip Chat Widget</div>
+      <h3>Como o contexto da conversa migra entre WhatsApp e webchat</h3>
+      <p class="tl">O Blip Chat Widget suporta dois tipos de autenticação de usuário, e é essa escolha que define se o contexto acompanha o cliente entre os canais. No modo <code>DEV_AUTH</code>, o webchat é aberto com o mesmo identificador único do contato usado na conversa de WhatsApp dentro da plataforma Blip — o histórico de mensagens fica associado a essa identidade, permitindo importar e exportar o contexto da conversa entre os dois canais. Informações adicionais do contato (nome, e-mail, telefone, cidade e demais propriedades do cadastro) são atualizadas pelo método <code>withAccount</code>.</p>
+      <div class="auth-grid">
+        <div class="auth-card">
+          <div class="k">Padrão · sem continuidade</div>
+          <h4>GUEST</h4>
+          <ul>
+            <li>O usuário recebe uma conta de visitante para interagir com o agente.</li>
+            <li>A conta de visitante expira após 30 dias.</li>
+            <li>Sem histórico de mensagens — o contexto não acompanha o cliente entre canais.</li>
+            <li>Assumido como padrão quando o método <code style="font-size:.85em">withAuth</code> não é utilizado.</li>
+          </ul>
+        </div>
+        <div class="auth-card hl">
+          <div class="k">Recomendado · com continuidade de contexto</div>
+          <h4>DEV_AUTH</h4>
+          <ul>
+            <li>O usuário é identificado pelo desenvolvedor por dois parâmetros: <code style="font-size:.85em">userIdentity</code> e <code style="font-size:.85em">userPassword</code>.</li>
+            <li>Com histórico de mensagens — a conversa continua de onde parou.</li>
+            <li>Usando o identificador único do contato no Blip, o mesmo do WhatsApp, o contexto é importado e exportado entre os canais.</li>
+            <li>Demais propriedades do contato são atualizadas via <code style="font-size:.85em">withAccount</code>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="code-grid">
+        <div class="code-box">
+          <div class="cb-top"><span>authType · GUEST (padrão)</span><div class="dots"><i></i><i></i><i></i></div></div>
+          <pre><span class="kw">import</span> { BlipChat } <span class="kw">from</span> <span class="st">"blip-chat-widget"</span>;
+
+<span class="kw">new</span> BlipChat()
+  .withAppKey(<span class="st">"YOUR-APP-KEY"</span>)
+  .withButton({ color: <span class="st">"#2CC3D5"</span> })
+  .build();</pre>
+        </div>
+        <div class="code-box">
+          <div class="cb-top"><span>authType · DEV_AUTH</span><div class="dots"><i></i><i></i><i></i></div></div>
+          <pre><span class="kw">var</span> builder = <span class="kw">new</span> BlipChat()
+  .withAppKey(<span class="st">"YOUR-APP-KEY"</span>)
+  .withButton({ color: <span class="st">"#2CC3D5"</span> })
+  .withAuth({
+      authType: BlipChat.DEV_AUTH,
+      userIdentity: <span class="st">'1234567'</span>,  <span class="cm">// identificador do contato</span>
+      userPassword: <span class="st">'MTIzNDU2'</span>,
+  })
+  .withAccount({
+      fullName: <span class="st">'John Doe'</span>,
+      email: <span class="st">'johndoe@gmail.com'</span>,
+      phoneNumber: <span class="st">'+15055034455'</span>,
+      city: <span class="st">'Decatur'</span>,
+  });
+
+builder.build();</pre>
+        </div>
+      </div>
+      <p class="tech-note"><b>Nota:</b> para definir o tipo de autenticação <code style="font-family:ui-monospace,monospace;font-size:.9em">DEV_AUTH</code>, utilize o método <code style="font-family:ui-monospace,monospace;font-size:.9em">withAuth</code> no objeto builder. Qualquer propriedade do cadastro de contatos da plataforma Blip pode ser atualizada pelo método <code style="font-family:ui-monospace,monospace;font-size:.9em">withAccount</code>.</p>
     </div>
   </div>
 </section>
