@@ -278,7 +278,14 @@ nav.scrolled{border-bottom:1px solid var(--line);background:rgba(5,7,15,.9)}
 .fs-opt .rad{width:16px;height:16px;border-radius:50%;border:2px solid #C9D2E2;flex-shrink:0}
 .fs-opt.sel{border-color:var(--blip);background:#F2F9FF}
 .fs-opt.sel .rad{border-color:var(--blip);background:radial-gradient(circle,var(--blip) 45%,#fff 50%)}
-.fs-cta{flex-shrink:0;margin:10px 18px 16px;background:var(--blip);color:#fff;border-radius:12px;text-align:center;padding:12px;font-size:13px;font-weight:700}
+.fs-cta{flex-shrink:0;margin:10px 18px 16px;background:var(--blip);color:#fff;border-radius:12px;text-align:center;padding:12px;font-size:13px;font-weight:700;position:relative}
+.fs-opt{position:relative}
+.tap.blue{border-color:var(--blip);background:rgba(0,150,250,.3)}
+.fs-page{position:absolute;top:16px;left:0;right:0;bottom:0;display:flex;flex-direction:column;background:#fff;opacity:0;pointer-events:none;transform:translateX(26px);transition:opacity .35s ease,transform .35s ease}
+.fs-page.on{opacity:1;transform:none}
+.fs-sum{border:1px solid #E2E8F4;border-radius:11px;padding:11px 14px;margin-bottom:8px}
+.fs-sum .sl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#94A0BC;font-weight:700}
+.fs-sum .sv{font-size:12.5px;color:#0B1B2B;font-weight:500;margin-top:2px}
 
 /* ===== RCS phone (light Android) ===== */
 .phone.rcs{background:#F6F7F9;border-color:#1a1a1a}
@@ -692,30 +699,60 @@ builder.build();</pre>
     <h2 class="section-title reveal">Componentização com <b>WhatsApp Flows</b></h2>
     <div class="split">
       <div class="reveal">
-        <div class="phone">
+        <div class="phone" id="fPhone">
           <div class="wa-top">
             <div class="wa-av">SN</div>
             <div class="wa-name">[Seu Negócio]<small>online</small></div>
           </div>
           <div class="wa-body" style="overflow:hidden">
-            <div class="bub in static">Vamos agendar sua visita técnica. Toque abaixo para escolher data e período.
-              <div class="wabtn">Abrir agendamento</div>
+            <div class="bub in static">Vamos agendar sua visita técnica. Toque abaixo para escolher endereço, data e período.
+              <div class="wabtn" id="fCtaBub">Abrir agendamento<span class="tap" id="fTap0"></span></div>
             <span class="time">09:12</span></div>
-            <div class="sheet">
+            <div class="bub out" id="fr1">Agendamento enviado<span class="time">09:13</span></div>
+            <div class="bub in" id="fr2">Visita técnica confirmada: <b>amanhã, entre 13h e 18h</b>, na Av. Paulista, 1000. O técnico avisará ao chegar — e você pode reagendar por aqui a qualquer momento.<span class="time">09:13</span></div>
+            <div class="sheet slide" id="fSheet">
               <div class="grab"></div>
-              <div class="fs-title">
-                <div class="ft1">Agendamento de visita técnica</div>
-                <div class="ft2">Etapa 2 de 3 · endereço confirmado</div>
+              <div class="fs-page on" id="fp1">
+                <div class="fs-title">
+                  <div class="ft1">Agendamento de visita técnica</div>
+                  <div class="ft2">Etapa 1 de 3 · identificação</div>
+                </div>
+                <div class="fs-steps"><span class="on"></span><span></span><span></span></div>
+                <div class="fs-body">
+                  <div class="fs-q">Confirme o endereço da visita</div>
+                  <div class="fs-opt" id="fOpt1"><span class="rad"></span>Av. Paulista, 1000 · São Paulo/SP<span class="tap blue" id="fTap1"></span></div>
+                  <div class="fs-opt"><span class="rad"></span>Cadastrar outro endereço</div>
+                </div>
+                <div class="fs-cta" id="fc1">Continuar<span class="tap" id="fTapC1"></span></div>
               </div>
-              <div class="fs-steps"><span class="on"></span><span class="on"></span><span></span></div>
-              <div class="fs-body">
-                <div class="fs-q">Qual período é melhor para você?</div>
-                <div class="fs-opt"><span class="rad"></span>Amanhã · manhã (8h–12h)</div>
-                <div class="fs-opt sel"><span class="rad"></span>Amanhã · tarde (13h–18h)</div>
-                <div class="fs-opt"><span class="rad"></span>Quinta-feira · manhã (8h–12h)</div>
-                <div class="fs-opt"><span class="rad"></span>Quinta-feira · tarde (13h–18h)</div>
+              <div class="fs-page" id="fp2">
+                <div class="fs-title">
+                  <div class="ft1">Agendamento de visita técnica</div>
+                  <div class="ft2">Etapa 2 de 3 · endereço confirmado</div>
+                </div>
+                <div class="fs-steps"><span class="on"></span><span class="on"></span><span></span></div>
+                <div class="fs-body">
+                  <div class="fs-q">Qual período é melhor para você?</div>
+                  <div class="fs-opt"><span class="rad"></span>Amanhã · manhã (8h–12h)</div>
+                  <div class="fs-opt" id="fOpt2"><span class="rad"></span>Amanhã · tarde (13h–18h)<span class="tap blue" id="fTap2"></span></div>
+                  <div class="fs-opt"><span class="rad"></span>Quinta-feira · manhã (8h–12h)</div>
+                  <div class="fs-opt"><span class="rad"></span>Quinta-feira · tarde (13h–18h)</div>
+                </div>
+                <div class="fs-cta" id="fc2">Continuar<span class="tap" id="fTapC2"></span></div>
               </div>
-              <div class="fs-cta">Continuar</div>
+              <div class="fs-page" id="fp3">
+                <div class="fs-title">
+                  <div class="ft1">Agendamento de visita técnica</div>
+                  <div class="ft2">Etapa 3 de 3 · revisão</div>
+                </div>
+                <div class="fs-steps"><span class="on"></span><span class="on"></span><span class="on"></span></div>
+                <div class="fs-body">
+                  <div class="fs-sum"><div class="sl">Endereço</div><div class="sv">Av. Paulista, 1000 · São Paulo/SP</div></div>
+                  <div class="fs-sum"><div class="sl">Período</div><div class="sv">Amanhã · tarde (13h–18h)</div></div>
+                  <div class="fs-sum"><div class="sl">Serviço</div><div class="sv">Visita técnica · diagnóstico de conexão</div></div>
+                </div>
+                <div class="fs-cta" id="fc3">Confirmar agendamento<span class="tap" id="fTapC3"></span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -904,6 +941,54 @@ else{
     if(e.isIntersecting){wvCycle();}else{wvReset();}
   }),{threshold:.4});
   wio.observe(wvPhone);
+}
+
+/* FLOW END-TO-END ANIMATION (Pilar 03) */
+const fEl=id=>document.getElementById(id);
+const fSheet=fEl('fSheet'),fPhone=fEl('fPhone');
+const fPages=[fEl('fp1'),fEl('fp2'),fEl('fp3')];
+const fTaps=['fTap0','fTap1','fTapC1','fTap2','fTapC2','fTapC3'].map(fEl);
+let fTimers=[];
+function fReset(){
+  fTimers.forEach(clearTimeout);fTimers=[];
+  fSheet.classList.remove('up');
+  fPages.forEach((pg,i)=>pg.classList.toggle('on',i===0));
+  fEl('fOpt1').classList.remove('sel');fEl('fOpt2').classList.remove('sel');
+  fEl('fr1').classList.remove('show');fEl('fr2').classList.remove('show');
+  fEl('fCtaBub').classList.remove('hot');
+  fTaps.forEach(t=>t.classList.remove('go'));
+}
+function fTapGo(t){t.classList.remove('go');void t.offsetWidth;t.classList.add('go');}
+function fPage(n){fPages.forEach((pg,i)=>pg.classList.toggle('on',i===n));}
+function fCycle(){
+  fReset();
+  const T=(fn,ms)=>fTimers.push(setTimeout(fn,ms));
+  T(()=>{fTapGo(fEl('fTap0'));fEl('fCtaBub').classList.add('hot');},1000);
+  T(()=>{fEl('fCtaBub').classList.remove('hot');fSheet.classList.add('up');},1850);
+  /* page 1: confirm address */
+  T(()=>fTapGo(fEl('fTap1')),2900);
+  T(()=>fEl('fOpt1').classList.add('sel'),3250);
+  T(()=>fTapGo(fEl('fTapC1')),4100);
+  T(()=>fPage(1),4500);
+  /* page 2: choose period */
+  T(()=>fTapGo(fEl('fTap2')),5500);
+  T(()=>fEl('fOpt2').classList.add('sel'),5850);
+  T(()=>fTapGo(fEl('fTapC2')),6700);
+  T(()=>fPage(2),7100);
+  /* page 3: review + confirm */
+  T(()=>fTapGo(fEl('fTapC3')),8400);
+  T(()=>fSheet.classList.remove('up'),8900);
+  /* back to conversation */
+  T(()=>fEl('fr1').classList.add('show'),9700);
+  T(()=>fEl('fr2').classList.add('show'),10500);
+  T(fCycle,14500);
+}
+if(!RM){
+  const fio=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){fCycle();}else{fReset();}
+  }),{threshold:.4});
+  fio.observe(fPhone);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)fReset();});
 }
 </script>
 </body>
