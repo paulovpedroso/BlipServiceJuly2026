@@ -88,6 +88,8 @@ nav.scrolled{border-bottom:1px solid var(--line);background:rgba(5,7,15,.9)}
 .hero h1{font-size:clamp(38px,6.4vw,80px);font-weight:800;letter-spacing:-.045em;margin:26px 0 28px;max-width:20ch}
 .hero h1 .grad{background:linear-gradient(100deg,var(--blip-bright),var(--blip) 60%,var(--blip-deep));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .hero p{font-size:clamp(16px,2vw,20px);color:var(--mut);max-width:58ch;font-weight:300}
+.hero-roi{margin-top:28px;border-left:3px solid var(--blip);padding:6px 0 6px 22px;font-size:16.5px;color:#D7E2F3;font-weight:300;max-width:58ch;line-height:1.6}
+.hero-roi b{color:#fff;font-weight:600}
 .hero-tags{display:flex;gap:14px;margin-top:46px;flex-wrap:wrap}
 .htag{font-size:13px;color:var(--mut);border:1px solid var(--line);padding:8px 16px;border-radius:100px;font-weight:300;display:flex;align-items:center;gap:8px}
 .htag b{color:#fff;font-weight:600}
@@ -119,6 +121,7 @@ nav.scrolled{border-bottom:1px solid var(--line);background:rgba(5,7,15,.9)}
 .catc.hl h4,.catc.hl p{color:#fff}
 .catc.hl p{color:rgba(255,255,255,.78)}
 .catc.hl .pr{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff}
+.fict{margin-top:12px;display:inline-block;font-size:10px;letter-spacing:.1em;font-weight:700;color:#FFD9A0;background:rgba(232,161,61,.16);border:1px dashed rgba(232,161,61,.55);border-radius:8px;padding:6px 11px}
 .val-note{margin-top:44px;border:1px dashed #C9D6EC;border-radius:16px;padding:26px 30px;background:#fff;font-size:14px;color:var(--l-txt);font-weight:300;line-height:1.65}
 .val-note b{color:var(--black);font-weight:600}
 .val-note .vtag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9A6A1B;background:#FCF3E3;border:1px solid #F2DDB5;border-radius:100px;padding:5px 13px;margin-bottom:14px}
@@ -180,8 +183,6 @@ nav.scrolled{border-bottom:1px solid var(--line);background:rgba(5,7,15,.9)}
 .flow-mini .fbtn{margin-top:8px;background:var(--blip);color:#fff;text-align:center;font-size:11.5px;font-weight:600;border-radius:7px;padding:7px}
 .cost-chip{position:sticky;top:4px;z-index:5;align-self:center;background:var(--panel);border:1px solid var(--line);color:#fff;font-size:11.5px;font-weight:600;padding:7px 15px;border-radius:100px;display:flex;gap:8px;align-items:center;transition:transform .18s;box-shadow:0 8px 24px rgba(0,0,0,.5)}
 .cost-chip.pop{transform:scale(1.1)}
-.cost-chip .c-val{color:var(--blip-bright);font-weight:700;font-variant-numeric:tabular-nums}
-.cost-chip.good .c-val{color:var(--ok)}
 .phone-cap{margin-top:20px;text-align:center}
 .phone-cap .t1{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
 .phone-cap .t1.as{color:#FF8DA1}
@@ -374,6 +375,7 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
     <div class="eyebrow reveal">Report Executivo · Julho 2026</div>
     <h1 class="reveal">Mudanças na precificação do <span class="grad">WhatsApp Business Platform</span></h1>
     <p class="reveal">A Meta redefiniu o modelo de cobrança da plataforma. Este documento consolida o que muda, os impactos previstos na camada de serviço e os quatro pilares estruturados pela Blip para preservar eficiência operacional e experiência do cliente.</p>
+    <p class="hero-roi reveal">Mesmo com a cobrança por mensagem a partir de agora, <b>o ROI dentro do WhatsApp segue sendo um acelerador de resultados</b> — o objetivo deste plano é potencializá-lo, operando com ainda mais eficiência dentro do novo modelo.</p>
     <div class="hero-tags reveal">
       <div class="htag"><span class="pip"></span>Vigência: <b>ago–out 2026</b></div>
       <div class="htag">Fonte: <b>guia oficial de precificação Meta</b></div>
@@ -384,14 +386,14 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
         <div class="when">Ago 2026<small>01 · 08 · 2026</small></div>
         <div class="body">
           <h4>Meta Business Agent</h4>
-          <p>Nova categoria de mensagem operada pela IA da Meta, cobrada por token: US$ 2,00 por 1 milhão de tokens — na prática, aproximadamente US$ 0,04 a 0,05 por mensagem, proporcional à complexidade. Faturamento realizado diretamente pela Meta ao cliente final.</p>
+          <p>Nova categoria de mensagem operada pela IA da Meta, cobrada por token: US$ 2,00 por 1 milhão de tokens. A estimativa da Meta Inc é de aproximadamente US$ 0,04 a 0,05 por mensagem, a depender da complexidade do caso de uso. Faturamento realizado diretamente pela Meta ao cliente final.</p>
         </div>
       </div>
       <div class="rstep crit">
         <div class="when">Out 2026<small>01 · 10 · 2026</small></div>
         <div class="body">
           <h4>Cobrança de mensagens não-template</h4>
-          <p>Toda mensagem enviada pelo negócio fora de template — por atendimento humano ou IA de terceiros — passa a ser cobrada, inclusive dentro da janela de atendimento de 24 horas. Valor de referência no Brasil: R$ 0,04 por mensagem*.</p>
+          <p>Toda mensagem enviada pelo negócio fora de template — por atendimento humano ou IA de terceiros — passa a ser cobrada, inclusive dentro da janela de atendimento de 24 horas. A Meta Inc atualizará a lista oficial de preços e já confirmou que a mensagem de serviço terá o mesmo custo da categoria utility.</p>
         </div>
       </div>
     </div>
@@ -403,7 +405,7 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
   <div class="wrap">
     <div class="eyebrow dark reveal">01 · Contexto</div>
     <h2 class="section-title reveal">O novo <b>modelo de cobrança</b></h2>
-    <p class="lead reveal">Cada mensagem enviada pelo negócio pertence a uma única categoria e é cobrada conforme ela. A principal mudança está nas mensagens de serviço — as respostas do atendimento — que deixam de ser gratuitas dentro da janela de 24 horas.</p>
+    <p class="lead reveal">Cada mensagem enviada pelo negócio pertence a uma única categoria e é cobrada conforme ela. As principais mudanças estão associadas ao retorno da cobrança da mensagem de WA Service e à cobrança das mensagens enviadas via BizAI (Meta Business Agent), que serão cobradas por tokens.</p>
     <div class="cat-grid">
       <div class="catc reveal">
         <div class="k">Template · por mensagem</div>
@@ -427,19 +429,20 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
         <div class="k">Não-template · a principal mudança</div>
         <h4>Service</h4>
         <p>Respostas do atendimento — humano ou IA de terceiros — dentro da conversa. A partir de 01/10/2026, cada mensagem é cobrada, mesmo na janela de 24 horas.</p>
-        <span class="pr">R$ 0,04 por mensagem*</span>
+        <span class="pr">Preço de Service = Utility</span>
+        <div class="fict">[PREÇO FICTÍCIO, A SER CONFIRMADO]</div>
       </div>
       <div class="catc reveal">
         <div class="k">Não-template · por token</div>
         <h4>Meta Business Agent</h4>
-        <p>IA da Meta respondendo pelo negócio. US$ 2,00 por 1 milhão de tokens; custo proporcional à complexidade da resposta. Faturado diretamente pela Meta.</p>
+        <p>IA da Meta respondendo pelo negócio. US$ 2,00 por 1 milhão de tokens — estimativa da Meta Inc de US$ 0,04 a 0,05 por mensagem, a depender da complexidade do caso de uso. Faturado diretamente pela Meta.</p>
         <span class="pr">A partir de 01/08/2026</span>
       </div>
     </div>
     <div class="val-note reveal">
       <span class="vtag">Pontos em validação com a Meta</span><br>
       <b>(1)</b> Se interações conduzidas pela IA da Meta são contabilizadas como mensagens de serviço ou possuem tratamento próprio de cobrança. <b>(2)</b> Como são categorizadas conversas iniciadas por template que evoluem para atendimento humano.<br><br>
-      *Valor de referência por mensagem de serviço no Brasil. Sujeito ao rate card oficial da Meta por mercado.
+      A Meta Inc atualizará a lista oficial de preços por mercado. Conforme já comunicado, a mensagem de serviço terá o mesmo custo da categoria utility.
     </div>
   </div>
 </section>
@@ -449,7 +452,7 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
   <div class="wrap">
     <div class="eyebrow reveal">02 · A resposta Blip</div>
     <h2 class="section-title reveal">Quatro pilares sobre <b>know-how validado</b></h2>
-    <p class="lead reveal">A resposta da Blip ao novo modelo não parte do zero. Os quatro pilares deste documento consolidam teses já aplicadas e validadas em larga escala em operações enterprise — telecomunicações, utilities, educação, finanças e varejo — com um objetivo claro: amortizar o impacto inicial da nova precificação sem comprometer a experiência do cliente.</p>
+    <p class="lead reveal">O foco deste plano é otimizar e higienizar as conversas que possuem fit para otimização — e, com a eficiência conquistada, escalar o canal para novos casos de uso e novas frentes. Os quatro pilares consolidam teses já aplicadas e validadas em larga escala em operações enterprise — telecomunicações, utilities, educação, finanças e varejo — para amortizar o impacto inicial da transição sem comprometer a experiência do cliente.</p>
     <div class="kh-grid">
       <div class="kh reveal">
         <h4>Teses validadas em produção</h4>
@@ -466,7 +469,7 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
     </div>
     <div class="pidx">
       <a class="pi reveal" href="#p1"><span class="pn">Pilar 01</span><h5>Higienização das conversas</h5><p>Menos mensagens, mais resolutivas.</p></a>
-      <a class="pi reveal" href="#p2"><span class="pn">Pilar 02</span><h5>Web Chat embeddado</h5><p>Continuidade fora da cobrança por mensagem.</p></a>
+      <a class="pi reveal" href="#p2"><span class="pn">Pilar 02</span><h5>Web Chat embeddado</h5><p>Continuidade de experiência entre canais.</p></a>
       <a class="pi reveal" href="#p3"><span class="pn">Pilar 03</span><h5>Componentização com Flows</h5><p>Uma interação no lugar de muitas trocas.</p></a>
       <a class="pi reveal" href="#p4"><span class="pn">Pilar 04</span><h5>Orquestração RCS</h5><p>Diversificação de canal e de custo.</p></a>
     </div>
@@ -495,7 +498,7 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
             <div class="wa-name">[Seu Negócio]<small>online</small></div>
           </div>
           <div class="wa-body" id="chatAsis">
-            <div class="cost-chip" id="chipAsis"><span class="c-msgs">0 mensagens cobradas</span>·<span class="c-val">R$ 0,00</span></div>
+            <div class="cost-chip" id="chipAsis"><span class="c-msgs">0 mensagens cobradas</span></div>
             <div class="bub out" data-d="0">Olá, minha internet está sem sinal<span class="time">11:02</span></div>
             <div class="bub in" data-cost data-d="1">Olá! Bem-vindo ao nosso atendimento.<span class="time">11:02</span></div>
             <div class="bub in" data-cost data-d="2">Para começar, escolha uma opção:<br>1. Suporte<br>2. Financeiro<br>3. Vendas<span class="time">11:02</span></div>
@@ -523,7 +526,7 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
         </div>
         <div class="phone-cap">
           <div class="t1 as">As-Is · fluxo atual</div>
-          <div class="t2">14 mensagens cobradas × R$ 0,04* = <b>R$ 0,56 por conversa</b></div>
+          <div class="t2"><b>14 mensagens cobradas</b> na jornada simulada</div>
           <button class="replay" data-target="asis">Reproduzir conversa</button>
         </div>
       </div>
@@ -535,7 +538,7 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
             <div class="wa-name">[Seu Negócio]<small>online</small></div>
           </div>
           <div class="wa-body" id="chatTobe">
-            <div class="cost-chip good" id="chipTobe"><span class="c-msgs">0 mensagens cobradas</span>·<span class="c-val">R$ 0,00</span></div>
+            <div class="cost-chip good" id="chipTobe"><span class="c-msgs">0 mensagens cobradas</span></div>
             <div class="bub out" data-d="0">Olá, minha internet está sem sinal<span class="time">11:02</span></div>
             <div class="bub in" data-cost data-d="1">Olá, Ana. Identifiquei seu plano Fibra 500MB. Vamos diagnosticar o modem em 30 segundos — toque abaixo para iniciar.<span class="time">11:02</span></div>
             <div class="bub in" data-cost data-d="2">Diagnóstico guiado, sem digitação:
@@ -560,14 +563,14 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
         </div>
         <div class="phone-cap">
           <div class="t1 to">To-Be · fluxo higienizado</div>
-          <div class="t2">5 mensagens cobradas × R$ 0,04* = <b>R$ 0,20 por conversa</b></div>
+          <div class="t2"><b>5 mensagens cobradas</b> na mesma jornada</div>
           <button class="replay" data-target="tobe">Reproduzir conversa</button>
         </div>
       </div>
     </div>
     <div class="duo-verdict reveal">
       <div class="dv">−64%</div>
-      <p>de custo na jornada simulada, com resolução em menos etapas e sem re-coleta de dados. O mesmo atendimento, redesenhado para o novo modelo de cobrança.</p>
+      <p>de mensagens cobradas na jornada simulada, com resolução em menos etapas e sem re-coleta de dados. O mesmo atendimento, redesenhado para operar melhor dentro do novo modelo.</p>
     </div>
   </div>
 </section>
@@ -583,7 +586,7 @@ footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
         <ul class="os-list reveal">
           <li><span class="arrow">→</span><span><b>Contexto preservado:</b> o identificador único do contato na plataforma Blip conecta os dois canais, mantendo histórico e rastreabilidade.</span></li>
           <li><span class="arrow">→</span><span><b>Transição sem ruptura:</b> a janela do webchat pode ser fechada e reaberta sem perda da conversa em andamento.</span></li>
-          <li><span class="arrow">→</span><span><b>Fora do escopo de cobrança por mensagem:</b> interações conduzidas no webchat não são contabilizadas como mensagens do WhatsApp Business Platform.</span></li>
+          <li><span class="arrow">→</span><span><b>Cada canal no que faz de melhor:</b> a conversa nasce e permanece no WhatsApp; o acompanhamento contínuo e de alta troca de mensagens acontece no ambiente ideal para ele.</span></li>
           <li><span class="arrow">→</span><span><b>Aplicação indicada:</b> atendimentos longos e de alta troca de mensagens — suporte técnico, negociação e acompanhamento de casos.</span></li>
         </ul>
         <div class="pill-note reveal"><b>Frentes prioritárias:</b> vendas, recarga e suporte, com integração ao CRM para manutenção do contexto entre canais.</div>
@@ -823,7 +826,7 @@ builder.build();</pre>
 <footer>
   <div class="wrap">
     <div class="fl"><div class="brand"><svg class="blogo" viewBox="0 0 100 100" aria-hidden="true"><path fill="#0096FA" d="M50 3C24 3 4 21 4 45s20 42 46 42 46-18 46-42S76 3 50 3z"/><path fill="#0096FA" d="M31 82 38 99 55 85z"/></svg>blip</div></div>
-    <p class="disc">Documento confidencial · Blip © 2026. Valores e políticas de cobrança sujeitos à documentação oficial da Meta e ao rate card vigente por mercado. Pontos sinalizados como "em validação" aguardam confirmação oficial da Meta. Jornadas e valores de conversa apresentados são simulações ilustrativas.</p>
+    <p class="disc">Documento confidencial · Blip © 2026. Valores e políticas de cobrança sujeitos à documentação oficial e à lista de preços a ser atualizada pela Meta. Pontos sinalizados como "em validação" aguardam confirmação oficial da Meta. Jornadas apresentadas são simulações ilustrativas.</p>
   </div>
 </footer>
 
@@ -849,13 +852,11 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* CHAT ANIMATION (Pilar 01) */
-const BRL=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
-const MSG_PRICE=0.04, STEP=620;
+const STEP=620;
 const chats={asis:{chat:document.getElementById('chatAsis'),chip:document.getElementById('chipAsis'),timers:[],playing:false},
              tobe:{chat:document.getElementById('chatTobe'),chip:document.getElementById('chipTobe'),timers:[],playing:false}};
-function setChip(c,count,cost){
+function setChip(c,count){
   c.chip.querySelector('.c-msgs').textContent=count===0?'0 mensagens cobradas':count+(count===1?' mensagem cobrada':' mensagens cobradas');
-  c.chip.querySelector('.c-val').textContent=BRL.format(cost);
 }
 const REDM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function resetChat(k){
@@ -864,7 +865,7 @@ function resetChat(k){
   c.timers.forEach(t=>clearTimeout(t));c.timers=[];
   c.chat.querySelectorAll('.bub').forEach(b=>b.classList.remove('show'));
   c.chat.classList.remove('lock');
-  setChip(c,0,0);
+  setChip(c,0);
   c.chat.scrollTop=0;
 }
 function finishChat(k){
@@ -876,7 +877,7 @@ function finishChat(k){
 function playChat(k){
   resetChat(k);
   const c=chats[k],bubs=[...c.chat.querySelectorAll('.bub')];
-  let i=0,count=0,cost=0;
+  let i=0,count=0;
   c.playing=true;
   c.chat.classList.add('lock');
   function step(){
@@ -885,8 +886,8 @@ function playChat(k){
     const b=bubs[i++];
     b.classList.add('show');
     if(b.hasAttribute('data-cost')){
-      count++;cost+=MSG_PRICE;
-      setChip(c,count,cost);
+      count++;
+      setChip(c,count);
       c.chip.classList.add('pop');c.timers.push(setTimeout(()=>c.chip.classList.remove('pop'),170));
     }
     c.chat.scrollTop=c.chat.scrollHeight;
@@ -899,7 +900,7 @@ function showFinal(k){
   const c=chats[k];
   c.chat.querySelectorAll('.bub').forEach(b=>b.classList.add('show'));
   const n=c.chat.querySelectorAll('[data-cost]').length;
-  setChip(c,n,n*MSG_PRICE);
+  setChip(c,n);
   c.chat.scrollTop=c.chat.scrollHeight;
 }
 document.querySelectorAll('.replay').forEach(btn=>btn.addEventListener('click',()=>playChat(btn.dataset.target)));
