@@ -163,9 +163,11 @@ nav.scrolled{border-bottom:1px solid var(--line);background:rgba(5,7,15,.9)}
 .wa-name{font-size:14px;font-weight:600;color:#fff;line-height:1.2}
 .wa-name small{display:block;font-size:10.5px;color:#8aa;font-weight:300}
 .wa-body{padding:14px 12px;display:flex;flex-direction:column;gap:9px;background:#0b141a;height:470px;overflow-y:auto}
-.bub{max-width:82%;padding:9px 12px;border-radius:12px;font-size:12.6px;line-height:1.4;font-weight:300;color:#E7EDF0;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s}
-.bub.show{opacity:1;transform:none}
-.bub.static{opacity:1;transform:none}
+.bub{max-width:82%;padding:9px 12px;border-radius:12px;font-size:12.6px;line-height:1.4;font-weight:300;color:#E7EDF0;display:none;opacity:0}
+.bub.show{display:block;animation:bubIn .45s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes bubIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.bub.static{display:block;opacity:1;animation:none}
+.wa-body.lock{overflow:hidden}
 .bub.in{background:#1f2c33;align-self:flex-start;border-top-left-radius:3px}
 .bub.out{background:#005c4b;align-self:flex-end;border-top-right-radius:3px}
 .bub b{font-weight:600}
@@ -282,7 +284,7 @@ footer .fl{display:flex;align-items:center;justify-content:center;margin-bottom:
 footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
-  .bub{transition:none}
+  .bub{display:block;opacity:1;animation:none}
   .sheet{transition:none}
   .wcv{opacity:1;transform:none;transition:none}
   .tap{display:none}
@@ -732,26 +734,31 @@ function setChip(c,count,cost){
   c.chip.querySelector('.c-msgs').textContent=count===0?'0 mensagens cobradas':count+(count===1?' mensagem cobrada':' mensagens cobradas');
   c.chip.querySelector('.c-val').textContent=BRL.format(cost);
 }
+const REDM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function resetChat(k){
   const c=chats[k];
   c.playing=false;
   c.timers.forEach(t=>clearTimeout(t));c.timers=[];
   c.chat.querySelectorAll('.bub').forEach(b=>b.classList.remove('show'));
+  c.chat.classList.remove('lock');
   setChip(c,0,0);
   c.chat.scrollTop=0;
+}
+function finishChat(k){
+  const c=chats[k];
+  c.playing=false;
+  c.chat.classList.remove('lock');
+  requestAnimationFrame(()=>{c.chat.scrollTop=c.chat.scrollHeight;});
 }
 function playChat(k){
   resetChat(k);
   const c=chats[k],bubs=[...c.chat.querySelectorAll('.bub')];
   let i=0,count=0,cost=0;
   c.playing=true;
+  c.chat.classList.add('lock');
   function step(){
     if(!c.playing)return;
-    if(i>=bubs.length){
-      c.playing=false;
-      requestAnimationFrame(()=>{c.chat.scrollTop=c.chat.scrollHeight;});
-      return;
-    }
+    if(i>=bubs.length){finishChat(k);return;}
     const b=bubs[i++];
     b.classList.add('show');
     if(b.hasAttribute('data-cost')){
@@ -760,19 +767,31 @@ function playChat(k){
       c.chip.classList.add('pop');c.timers.push(setTimeout(()=>c.chip.classList.remove('pop'),170));
     }
     c.chat.scrollTop=c.chat.scrollHeight;
+    requestAnimationFrame(()=>{c.chat.scrollTop=c.chat.scrollHeight;});
     c.timers.push(setTimeout(step,STEP));
   }
   c.timers.push(setTimeout(step,350));
 }
+function showFinal(k){
+  const c=chats[k];
+  c.chat.querySelectorAll('.bub').forEach(b=>b.classList.add('show'));
+  const n=c.chat.querySelectorAll('[data-cost]').length;
+  setChip(c,n,n*MSG_PRICE);
+  c.chat.scrollTop=c.chat.scrollHeight;
+}
 document.querySelectorAll('.replay').forEach(btn=>btn.addEventListener('click',()=>playChat(btn.dataset.target)));
-const jio=new IntersectionObserver(es=>es.forEach(e=>{
-  const k=e.target.id==='chatAsis'?'asis':'tobe';
-  if(e.isIntersecting){playChat(k);}else{resetChat(k);}
-}),{threshold:.3});
-jio.observe(chats.asis.chat);jio.observe(chats.tobe.chat);
-document.addEventListener('visibilitychange',()=>{
-  if(document.hidden){resetChat('asis');resetChat('tobe');}
-});
+if(REDM){
+  showFinal('asis');showFinal('tobe');
+}else{
+  const jio=new IntersectionObserver(es=>es.forEach(e=>{
+    const k=e.target.id==='chatAsis'?'asis':'tobe';
+    if(e.isIntersecting){playChat(k);}else{resetChat(k);}
+  }),{threshold:.3});
+  jio.observe(chats.asis.chat);jio.observe(chats.tobe.chat);
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden){resetChat('asis');resetChat('tobe');}
+  });
+}
 
 /* WEBVIEW ANIMATION (Pilar 02) */
 const wvSheet=document.getElementById('wvSheet'),wvTap=document.getElementById('wvTap'),
