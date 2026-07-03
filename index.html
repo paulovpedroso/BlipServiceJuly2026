@@ -162,7 +162,7 @@ nav.scrolled{border-bottom:1px solid var(--line);background:rgba(5,7,15,.9)}
 .wa-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(140deg,var(--blip),var(--blip-deep));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff}
 .wa-name{font-size:14px;font-weight:600;color:#fff;line-height:1.2}
 .wa-name small{display:block;font-size:10.5px;color:#8aa;font-weight:300}
-.wa-body{padding:14px 12px;display:flex;flex-direction:column;gap:9px;background:#0b141a;height:470px;overflow-y:auto;scroll-behavior:smooth}
+.wa-body{padding:14px 12px;display:flex;flex-direction:column;gap:9px;background:#0b141a;height:470px;overflow-y:auto}
 .bub{max-width:82%;padding:9px 12px;border-radius:12px;font-size:12.6px;line-height:1.4;font-weight:300;color:#E7EDF0;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s}
 .bub.show{opacity:1;transform:none}
 .bub.static{opacity:1;transform:none}
@@ -726,39 +726,53 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 /* CHAT ANIMATION (Pilar 01) */
 const BRL=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
 const MSG_PRICE=0.04, STEP=620;
-const chats={asis:{chat:document.getElementById('chatAsis'),chip:document.getElementById('chipAsis'),timers:[]},
-             tobe:{chat:document.getElementById('chatTobe'),chip:document.getElementById('chipTobe'),timers:[]}};
+const chats={asis:{chat:document.getElementById('chatAsis'),chip:document.getElementById('chipAsis'),timers:[],playing:false},
+             tobe:{chat:document.getElementById('chatTobe'),chip:document.getElementById('chipTobe'),timers:[],playing:false}};
+function setChip(c,count,cost){
+  c.chip.querySelector('.c-msgs').textContent=count===0?'0 mensagens cobradas':count+(count===1?' mensagem cobrada':' mensagens cobradas');
+  c.chip.querySelector('.c-val').textContent=BRL.format(cost);
+}
 function resetChat(k){
   const c=chats[k];
+  c.playing=false;
   c.timers.forEach(t=>clearTimeout(t));c.timers=[];
   c.chat.querySelectorAll('.bub').forEach(b=>b.classList.remove('show'));
-  c.chip.querySelector('.c-msgs').textContent='0 mensagens cobradas';
-  c.chip.querySelector('.c-val').textContent='R$ 0,00';
+  setChip(c,0,0);
   c.chat.scrollTop=0;
 }
 function playChat(k){
   resetChat(k);
   const c=chats[k],bubs=[...c.chat.querySelectorAll('.bub')];
-  let count=0,cost=0;
-  bubs.forEach(b=>{
-    const t=setTimeout(()=>{
-      b.classList.add('show');
-      if(b.hasAttribute('data-cost')){
-        count++;cost+=MSG_PRICE;
-        c.chip.querySelector('.c-msgs').textContent=count+(count===1?' mensagem cobrada':' mensagens cobradas');
-        c.chip.querySelector('.c-val').textContent=BRL.format(cost);
-        c.chip.classList.add('pop');setTimeout(()=>c.chip.classList.remove('pop'),170);
-      }
-      c.chat.scrollTo({top:c.chat.scrollHeight,behavior:'smooth'});
-    },parseInt(b.dataset.d||0)*STEP);
-    c.timers.push(t);
-  });
+  let i=0,count=0,cost=0;
+  c.playing=true;
+  function step(){
+    if(!c.playing)return;
+    if(i>=bubs.length){
+      c.playing=false;
+      requestAnimationFrame(()=>{c.chat.scrollTop=c.chat.scrollHeight;});
+      return;
+    }
+    const b=bubs[i++];
+    b.classList.add('show');
+    if(b.hasAttribute('data-cost')){
+      count++;cost+=MSG_PRICE;
+      setChip(c,count,cost);
+      c.chip.classList.add('pop');c.timers.push(setTimeout(()=>c.chip.classList.remove('pop'),170));
+    }
+    c.chat.scrollTop=c.chat.scrollHeight;
+    c.timers.push(setTimeout(step,STEP));
+  }
+  c.timers.push(setTimeout(step,350));
 }
 document.querySelectorAll('.replay').forEach(btn=>btn.addEventListener('click',()=>playChat(btn.dataset.target)));
 const jio=new IntersectionObserver(es=>es.forEach(e=>{
-  if(e.isIntersecting){playChat(e.target.id==='chatAsis'?'asis':'tobe');jio.unobserve(e.target);}
-}),{threshold:.35});
+  const k=e.target.id==='chatAsis'?'asis':'tobe';
+  if(e.isIntersecting){playChat(k);}else{resetChat(k);}
+}),{threshold:.3});
 jio.observe(chats.asis.chat);jio.observe(chats.tobe.chat);
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){resetChat('asis');resetChat('tobe');}
+});
 
 /* WEBVIEW ANIMATION (Pilar 02) */
 const wvSheet=document.getElementById('wvSheet'),wvTap=document.getElementById('wvTap'),
