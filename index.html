@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blip — Mudanças na Precificação do WhatsApp Business Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blip:#0096FA;--blip-bright:#1FB6FF;--blip-deep:#0A4DE0;
+  --black:#05070F;--black-2:#0B0F1C;--panel:#10162A;--panel-2:#161D34;
+  --line:rgba(255,255,255,.09);--white:#FFFFFF;--mut:#9AA6C4;--mut-2:#6C7795;
+  --ok:#1FD08A;--warn:#F5A623;--red:#FF5470;
+  --l-bg:#F4F7FC;--l-line:#E2E8F4;--l-txt:#52607C;--l-mut:#94A0BC;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Lexend',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.5}
+::selection{background:var(--blip);color:#fff}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+.eyebrow{font-size:13px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--blip-bright);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--blip)}
+.eyebrow.dark{color:var(--blip-deep)}
+.eyebrow.dark::before{background:var(--blip-deep)}
+h1,h2,h3{line-height:1.06;letter-spacing:-.02em;font-weight:700}
+.section{padding:120px 0;position:relative}
+.section-title{font-size:clamp(32px,4.6vw,56px);font-weight:700;margin:22px 0 26px;max-width:22ch}
+.section-title b{color:var(--blip-bright)}
+.lead{font-size:clamp(16px,1.9vw,19px);color:var(--mut);max-width:62ch;font-weight:300}
+.light-sec{background:var(--l-bg);color:var(--black)}
+.light-sec .lead{color:var(--l-txt)}
+.light-sec .section-title b{color:var(--blip-deep)}
+.dark-sec{background:linear-gradient(180deg,var(--black),var(--black-2))}
+.reveal{opacity:0;transform:translateY(30px);transition:.9s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.brand{font-weight:800;font-size:22px;letter-spacing:-.04em;display:flex;align-items:center;gap:8px}
+.brand .blogo{width:26px;height:26px;flex-shrink:0}
+.g-logos .brand{font-size:32px;gap:11px}
+.g-logos .blogo{width:42px;height:42px}
+footer .blogo{width:24px;height:24px}
+
+/* ===== NAV ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(18px);background:rgba(5,7,15,.62);border-bottom:1px solid transparent;transition:.4s}
+nav.scrolled{border-bottom:1px solid var(--line);background:rgba(5,7,15,.9)}
+.nav-in{max-width:1240px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
+.nav-links{display:flex;gap:28px;font-size:14px;font-weight:400;color:var(--mut)}
+.nav-links a{transition:.25s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--blip);color:#fff;padding:10px 19px;border-radius:100px;font-size:13.5px;font-weight:600;transition:.3s;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+.nav-cta:hover{background:var(--blip-bright);transform:translateY(-1px);box-shadow:0 8px 30px rgba(0,150,250,.4)}
+.nav-cta svg{width:13px;height:13px;stroke:#fff}
+.nav-right{display:flex;align-items:center;gap:28px}
+@media(max-width:1040px){.nav-links{display:none}}
+
+/* ===== GATE ===== */
+#gate{position:fixed;inset:0;z-index:9999;background:radial-gradient(ellipse 70% 70% at 50% 28%,#0A1B3A,#05070F 72%);display:flex;align-items:center;justify-content:center;padding:24px;transition:opacity .7s cubic-bezier(.16,1,.3,1),visibility .7s}
+#gate.hide{opacity:0;visibility:hidden;pointer-events:none}
+.g-card{position:relative;z-index:2;width:100%;max-width:460px;text-align:center;animation:gIn 1s cubic-bezier(.16,1,.3,1)}
+@keyframes gIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.g-logos{display:flex;align-items:center;justify-content:center;margin-bottom:42px}
+.g-lock{width:66px;height:66px;border-radius:19px;margin:0 auto 26px;background:linear-gradient(140deg,var(--blip),var(--blip-deep));display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(0,150,250,.4)}
+.g-lock svg{width:30px;height:30px;fill:#fff}
+.g-kick{font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--blip-bright);margin-bottom:14px}
+.g-title{font-size:clamp(28px,5.5vw,40px);font-weight:800;letter-spacing:-.03em;margin-bottom:14px}
+.g-sub{font-size:15px;color:var(--mut);font-weight:300;max-width:40ch;margin:0 auto 34px;line-height:1.5}
+.g-form{display:flex;gap:10px;max-width:400px;margin:0 auto;flex-wrap:wrap}
+.g-input{flex:1;min-width:200px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:15px 20px;color:#fff;font-family:'Lexend',sans-serif;font-size:15px;font-weight:400;outline:none;transition:.3s;text-align:center;letter-spacing:.05em}
+.g-input::placeholder{color:var(--mut-2);letter-spacing:0}
+.g-input:focus{border-color:var(--blip);background:rgba(0,150,250,.07);box-shadow:0 0 0 4px rgba(0,150,250,.12)}
+.g-btn{background:var(--blip);color:#fff;border:none;border-radius:14px;padding:15px 28px;font-family:'Lexend',sans-serif;font-weight:700;font-size:15px;cursor:pointer;transition:.3s}
+.g-btn:hover{background:var(--blip-bright);transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,150,250,.45)}
+.g-err{font-size:13.5px;color:#FF7A93;font-weight:400;margin-top:18px;opacity:0;transition:.3s;height:18px}
+.g-foot{margin-top:44px;font-size:12px;color:var(--mut-2);font-weight:300;letter-spacing:.04em}
+@keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-9px)}40%,60%{transform:translateX(9px)}}
+.g-card.shake{animation:shake .5s}
+
+/* ===== HERO ===== */
+.hero{min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:140px 0 80px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg .mesh{position:absolute;border-radius:50%;filter:blur(90px)}
+.m1{width:620px;height:620px;background:radial-gradient(circle,var(--blip-deep),transparent 70%);top:-180px;right:-120px;opacity:.6}
+.m2{width:480px;height:480px;background:radial-gradient(circle,var(--blip),transparent 70%);bottom:-180px;left:-140px;opacity:.28}
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 75%);opacity:.5}
+.hero-in{position:relative;z-index:2;width:100%}
+.hero h1{font-size:clamp(38px,6.4vw,80px);font-weight:800;letter-spacing:-.045em;margin:26px 0 28px;max-width:20ch}
+.hero h1 .grad{background:linear-gradient(100deg,var(--blip-bright),var(--blip) 60%,var(--blip-deep));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:clamp(16px,2vw,20px);color:var(--mut);max-width:58ch;font-weight:300}
+.hero-tags{display:flex;gap:14px;margin-top:46px;flex-wrap:wrap}
+.htag{font-size:13px;color:var(--mut);border:1px solid var(--line);padding:8px 16px;border-radius:100px;font-weight:300;display:flex;align-items:center;gap:8px}
+.htag b{color:#fff;font-weight:600}
+.htag .pip{width:6px;height:6px;border-radius:50%;background:var(--blip-bright)}
+
+/* ===== RULER TIMELINE ===== */
+.ruler{margin-top:76px;display:flex;flex-direction:column}
+.rstep{display:grid;grid-template-columns:150px 1fr;gap:28px;padding:30px 0;border-top:1px solid var(--line)}
+.rstep:last-child{border-bottom:1px solid var(--line)}
+.rstep .when{font-size:clamp(24px,3vw,34px);font-weight:800;letter-spacing:-.03em;color:var(--blip-bright)}
+.rstep.crit .when{color:var(--warn)}
+.rstep .when small{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut-2);font-weight:600;margin-top:4px}
+.rstep .body h4{font-size:18px;font-weight:600;margin-bottom:8px}
+.rstep .body p{color:var(--mut);font-weight:300;font-size:14.5px;max-width:70ch}
+@media(max-width:680px){.rstep{grid-template-columns:1fr;gap:10px}}
+
+/* ===== O QUE MUDA (light) ===== */
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+@media(max-width:960px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cat-grid{grid-template-columns:1fr}}
+.catc{background:#fff;border:1px solid var(--l-line);border-radius:18px;padding:28px;transition:.35s}
+.catc:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(10,40,90,.10)}
+.catc .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--blip-deep)}
+.catc h4{font-size:19px;font-weight:600;margin:12px 0 8px;color:var(--black)}
+.catc p{font-size:13.5px;color:var(--l-txt);font-weight:300;line-height:1.5}
+.catc .pr{margin-top:18px;display:inline-block;font-size:13px;font-weight:600;color:var(--blip-deep);background:#EDF3FD;border:1px solid var(--l-line);padding:8px 14px;border-radius:10px}
+.catc.hl{background:linear-gradient(150deg,var(--blip-deep),#062A66);border:none}
+.catc.hl .k{color:#9FDCFF}
+.catc.hl h4,.catc.hl p{color:#fff}
+.catc.hl p{color:rgba(255,255,255,.78)}
+.catc.hl .pr{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#fff}
+.val-note{margin-top:44px;border:1px dashed #C9D6EC;border-radius:16px;padding:26px 30px;background:#fff;font-size:14px;color:var(--l-txt);font-weight:300;line-height:1.65}
+.val-note b{color:var(--black);font-weight:600}
+.val-note .vtag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#9A6A1B;background:#FCF3E3;border:1px solid #F2DDB5;border-radius:100px;padding:5px 13px;margin-bottom:14px}
+.val-note .vtag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--warn)}
+
+/* ===== A RESPOSTA BLIP ===== */
+.kh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+@media(max-width:880px){.kh-grid{grid-template-columns:1fr}}
+.kh{border:1px solid var(--line);border-radius:18px;padding:28px;background:linear-gradient(160deg,var(--panel),transparent);position:relative;overflow:hidden}
+.kh::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(var(--blip-bright),var(--blip-deep))}
+.kh h4{font-size:17px;font-weight:600;margin-bottom:10px}
+.kh p{font-size:14px;color:var(--mut);font-weight:300;line-height:1.55}
+.pidx{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+@media(max-width:980px){.pidx{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.pidx{grid-template-columns:1fr}}
+.pi{border:1px solid var(--line);border-radius:16px;padding:24px;background:rgba(255,255,255,.02);transition:.3s;display:block}
+.pi:hover{border-color:var(--blip);transform:translateY(-4px)}
+.pi .pn{font-size:12px;letter-spacing:.12em;font-weight:700;color:var(--blip-bright)}
+.pi h5{font-size:15.5px;font-weight:600;margin:10px 0 5px;color:#fff}
+.pi p{font-size:12.5px;color:var(--mut);font-weight:300}
+
+/* ===== PILLAR SECTIONS ===== */
+.pill-kick{font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--mut-2);margin-bottom:6px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:26px}
+@media(max-width:920px){.split{grid-template-columns:1fr;gap:44px}}
+.os-list{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:15px}
+.os-list li{display:flex;gap:14px;color:var(--mut);font-weight:300;font-size:15px;line-height:1.5}
+.os-list li b{color:#fff;font-weight:600}
+.os-list .arrow{color:var(--blip-bright);font-weight:700;flex-shrink:0}
+.light-sec .os-list li{color:var(--l-txt)}
+.light-sec .os-list li b{color:var(--black)}
+.light-sec .os-list .arrow{color:var(--blip-deep)}
+.pill-note{margin-top:30px;border-left:3px solid var(--blip);padding:4px 0 4px 20px;font-size:14px;color:var(--mut);font-weight:300;max-width:52ch}
+.pill-note b{color:#fff;font-weight:600}
+.light-sec .pill-note{color:var(--l-txt);border-left-color:var(--blip-deep)}
+.light-sec .pill-note b{color:var(--black)}
+
+/* ===== PHONES (dark WA) ===== */
+.phone{max-width:330px;width:100%;margin:0 auto;background:#0b141a;border-radius:34px;border:9px solid #1a1a1a;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.55);position:relative}
+.wa-top{background:#1f2c33;padding:13px 16px;display:flex;align-items:center;gap:12px}
+.wa-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(140deg,var(--blip),var(--blip-deep));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff}
+.wa-name{font-size:14px;font-weight:600;color:#fff;line-height:1.2}
+.wa-name small{display:block;font-size:10.5px;color:#8aa;font-weight:300}
+.wa-body{padding:14px 12px;display:flex;flex-direction:column;gap:9px;background:#0b141a;height:470px;overflow-y:auto;scroll-behavior:smooth}
+.bub{max-width:82%;padding:9px 12px;border-radius:12px;font-size:12.6px;line-height:1.4;font-weight:300;color:#E7EDF0;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s}
+.bub.show{opacity:1;transform:none}
+.bub.static{opacity:1;transform:none}
+.bub.in{background:#1f2c33;align-self:flex-start;border-top-left-radius:3px}
+.bub.out{background:#005c4b;align-self:flex-end;border-top-right-radius:3px}
+.bub b{font-weight:600}
+.bub .time{font-size:9.5px;color:rgba(255,255,255,.4);text-align:right;margin-top:3px}
+.bub .wabtn{margin-top:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);border-radius:7px;padding:7px;text-align:center;font-size:12px;color:#7fd4ff;font-weight:500}
+.flow-mini{border:1px solid rgba(0,150,250,.45);border-radius:9px;padding:10px;margin-top:8px;background:rgba(0,150,250,.07)}
+.flow-mini .ft{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7fd4ff}
+.flow-mini .ff{margin-top:7px;display:flex;flex-direction:column;gap:5px}
+.flow-mini .fi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:6px 8px;font-size:11px;color:#C6D2E8}
+.flow-mini .fbtn{margin-top:8px;background:var(--blip);color:#fff;text-align:center;font-size:11.5px;font-weight:600;border-radius:7px;padding:7px}
+.cost-chip{position:sticky;top:4px;z-index:5;align-self:center;background:var(--panel);border:1px solid var(--line);color:#fff;font-size:11.5px;font-weight:600;padding:7px 15px;border-radius:100px;display:flex;gap:8px;align-items:center;transition:transform .18s;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.cost-chip.pop{transform:scale(1.1)}
+.cost-chip .c-val{color:var(--blip-bright);font-weight:700;font-variant-numeric:tabular-nums}
+.cost-chip.good .c-val{color:var(--ok)}
+.phone-cap{margin-top:20px;text-align:center}
+.phone-cap .t1{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.phone-cap .t1.as{color:#FF8DA1}
+.phone-cap .t1.to{color:var(--ok)}
+.phone-cap .t2{font-size:14px;color:var(--mut);font-weight:300;margin-top:6px}
+.phone-cap .t2 b{color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+.replay{margin-top:14px;background:none;border:1px solid var(--line);border-radius:100px;padding:8px 20px;font-family:'Lexend',sans-serif;font-size:12.5px;font-weight:600;color:var(--blip-bright);cursor:pointer;transition:.25s}
+.replay:hover{border-color:var(--blip);background:rgba(0,150,250,.08)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:56px}
+@media(max-width:880px){.duo{grid-template-columns:1fr;gap:64px}}
+.duo-verdict{margin-top:64px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0;display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+.duo-verdict .dv{font-size:clamp(34px,4vw,50px);font-weight:800;letter-spacing:-.04em;color:var(--blip-bright)}
+.duo-verdict p{color:var(--mut);font-weight:300;font-size:15px;max-width:52ch}
+
+/* sheet overlays (webview / flow) */
+.sheet{position:absolute;left:0;right:0;bottom:0;top:22%;background:#fff;border-radius:18px 18px 0 0;box-shadow:0 -14px 50px rgba(0,0,0,.5);display:flex;flex-direction:column;overflow:hidden;transition:transform .65s cubic-bezier(.16,1,.3,1)}
+.sheet.slide{transform:translateY(108%)}
+.sheet.slide.up{transform:none}
+.wabtn{position:relative}
+.bub .wabtn.hot{background:rgba(127,212,255,.3);border-color:#7fd4ff;color:#fff}
+.tap{position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:2.5px solid #fff;background:rgba(255,255,255,.32);opacity:0;pointer-events:none}
+.tap.go{animation:tapIn .85s ease}
+@keyframes tapIn{0%{opacity:0;transform:scale(.4)}30%{opacity:1;transform:scale(1)}55%{opacity:1;transform:scale(.85)}100%{opacity:0;transform:scale(1.5)}}
+.wcv{opacity:0;transform:translateY(10px);transition:.45s}
+.wcv.show{opacity:1;transform:none}
+.sheet .grab{width:38px;height:4px;border-radius:100px;background:#D6DCE6;margin:9px auto 4px;flex-shrink:0}
+.sheet-head{padding:8px 16px 12px;border-bottom:1px solid #EDF0F5;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.sheet-head .sav{width:30px;height:30px;border-radius:9px;background:linear-gradient(140deg,var(--blip),var(--blip-deep));display:flex;align-items:center;justify-content:center}
+.sheet-head .sav svg{width:17px;height:17px;display:block}
+.sheet-head .sn{font-size:12.5px;font-weight:600;color:#0B1B2B;line-height:1.2}
+.sheet-head .sn small{display:block;font-size:10px;color:#94A0BC;font-weight:400}
+.sheet-body{flex:1;padding:14px;display:flex;flex-direction:column;gap:8px;background:#F6F8FB;overflow:hidden}
+.wc-bub{max-width:84%;padding:8px 12px;border-radius:12px;font-size:12px;line-height:1.45;font-weight:400}
+.wc-bub.bot{background:#fff;border:1px solid #E8ECF3;color:#26344B;align-self:flex-start;border-top-left-radius:3px}
+.wc-bub.me{background:var(--blip);color:#fff;align-self:flex-end;border-top-right-radius:3px}
+.wc-ctx{align-self:center;font-size:10px;color:#94A0BC;background:#EDF1F7;border-radius:100px;padding:4px 12px;font-weight:500}
+.sheet-input{flex-shrink:0;margin:10px 12px 12px;background:#fff;border:1px solid #E2E8F4;border-radius:100px;padding:10px 16px;font-size:12px;color:#94A0BC;display:flex;justify-content:space-between;align-items:center}
+.sheet-input .snd{width:26px;height:26px;border-radius:50%;background:var(--blip);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.sheet-input .snd svg{width:12px;height:12px;fill:#fff}
+/* flow sheet */
+.fs-title{padding:6px 18px 14px;border-bottom:1px solid #EDF0F5;flex-shrink:0}
+.fs-title .ft1{font-size:14px;font-weight:700;color:#0B1B2B}
+.fs-title .ft2{font-size:10.5px;color:#94A0BC;margin-top:2px}
+.fs-steps{display:flex;gap:6px;padding:14px 18px 4px;flex-shrink:0}
+.fs-steps span{flex:1;height:4px;border-radius:100px;background:#E2E8F4}
+.fs-steps span.on{background:var(--blip)}
+.fs-body{flex:1;padding:12px 18px;background:#fff;overflow:hidden}
+.fs-q{font-size:13.5px;font-weight:600;color:#0B1B2B;margin-bottom:12px}
+.fs-opt{border:1.5px solid #E2E8F4;border-radius:11px;padding:11px 14px;font-size:12.5px;color:#26344B;margin-bottom:8px;display:flex;align-items:center;gap:10px;font-weight:400}
+.fs-opt .rad{width:16px;height:16px;border-radius:50%;border:2px solid #C9D2E2;flex-shrink:0}
+.fs-opt.sel{border-color:var(--blip);background:#F2F9FF}
+.fs-opt.sel .rad{border-color:var(--blip);background:radial-gradient(circle,var(--blip) 45%,#fff 50%)}
+.fs-cta{flex-shrink:0;margin:10px 18px 16px;background:var(--blip);color:#fff;border-radius:12px;text-align:center;padding:12px;font-size:13px;font-weight:700}
+
+/* ===== RCS phone (light Android) ===== */
+.phone.rcs{background:#F6F7F9;border-color:#1a1a1a}
+.rcs-top{background:#fff;border-bottom:1px solid #E8EBF0;padding:13px 16px;display:flex;align-items:center;gap:12px}
+.rcs-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(140deg,var(--blip),var(--blip-deep));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff}
+.rcs-name{font-size:14px;font-weight:600;color:#1B2430;line-height:1.2}
+.rcs-name small{display:block;font-size:10.5px;color:#7B8698;font-weight:400}
+.rcs-body{padding:16px 12px;display:flex;flex-direction:column;gap:10px;background:#F6F7F9;height:470px;overflow:hidden}
+.rcs-card{align-self:flex-start;width:88%;background:#fff;border:1px solid #E8EBF0;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(20,40,80,.08)}
+.rcs-img{height:110px;background:linear-gradient(120deg,var(--blip-deep),var(--blip) 60%,var(--blip-bright));position:relative}
+.rcs-img::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.14) 1px,transparent 1px);background-size:26px 26px;mask-image:radial-gradient(ellipse at 70% 30%,#000,transparent 75%)}
+.rcs-card .rc-in{padding:14px}
+.rcs-card h5{font-size:13.5px;font-weight:700;color:#1B2430}
+.rcs-card p{font-size:11.5px;color:#5A6678;font-weight:400;margin-top:5px;line-height:1.45}
+.rcs-btns{border-top:1px solid #EDF0F4;display:grid;grid-template-columns:1fr 1fr}
+.rcs-btns div{padding:11px;text-align:center;font-size:12px;font-weight:600;color:var(--blip-deep)}
+.rcs-btns div:first-child{border-right:1px solid #EDF0F4}
+.rcs-bub{max-width:78%;padding:9px 13px;border-radius:16px;font-size:12.4px;line-height:1.4;font-weight:400}
+.rcs-bub.in{background:#fff;border:1px solid #E8EBF0;color:#26303E;align-self:flex-start;border-bottom-left-radius:4px}
+.rcs-bub.out{background:var(--blip);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.rcs-chips{display:flex;gap:7px;flex-wrap:wrap;align-self:flex-start;margin-top:2px}
+.rcs-chips span{border:1px solid #C7D8F5;color:var(--blip-deep);background:#fff;font-size:11px;font-weight:500;border-radius:100px;padding:7px 13px}
+
+/* ===== CLOSING ===== */
+.closing{background:radial-gradient(ellipse 70% 90% at 50% 0%,rgba(10,77,224,.28),transparent 60%),linear-gradient(180deg,var(--black-2),var(--black));text-align:center;padding:160px 0 130px}
+.closing h2{font-size:clamp(40px,6.5vw,84px);font-weight:800;letter-spacing:-.04em}
+.closing h2 .grad{background:linear-gradient(100deg,var(--blip-bright),var(--blip-deep));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.closing p{color:var(--mut);font-size:17px;font-weight:300;max-width:52ch;margin:26px auto 0;line-height:1.6}
+.closing p b{color:#fff;font-weight:600}
+footer{padding:46px 0;border-top:1px solid var(--line);text-align:center;color:var(--mut-2);font-size:12.5px;font-weight:300}
+footer .fl{display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+footer .disc{max-width:760px;margin:0 auto;line-height:1.7}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .bub{transition:none}
+  .sheet{transition:none}
+  .wcv{opacity:1;transform:none;transition:none}
+  .tap{display:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<!-- ===== GATE ===== -->
+<div id="gate">
+  <div class="g-card" id="gCard">
+    <div class="g-logos"><div class="brand"><svg class="blogo" viewBox="0 0 100 100" aria-hidden="true"><path fill="#0096FA" d="M50 3C24 3 4 21 4 45s20 42 46 42 46-18 46-42S76 3 50 3z"/><path fill="#0096FA" d="M31 82 38 99 55 85z"/></svg>blip</div></div>
+    <div class="g-lock"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm3 8H9V6a3 3 0 1 1 6 0v3zm-3 5.5a1.5 1.5 0 0 1 .75 2.8V19a.75.75 0 0 1-1.5 0v-1.7A1.5 1.5 0 0 1 12 14.5z"/></svg></div>
+    <div class="g-kick">Documento Confidencial</div>
+    <div class="g-title">Precificação Meta 2026</div>
+    <p class="g-sub">Report executivo sobre as mudanças no modelo de cobrança do WhatsApp Business Platform. Acesso restrito.</p>
+    <div class="g-form">
+      <input type="password" class="g-input" id="gPass" placeholder="Senha de acesso" autocomplete="off">
+      <button class="g-btn" id="gBtn">Acessar</button>
+    </div>
+    <div class="g-err" id="gErr">Senha incorreta. Verifique e tente novamente.</div>
+    <div class="g-foot">Blip © 2026 · Material de uso interno e clientes</div>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav id="nav">
+  <div class="nav-in">
+    <div class="brand"><svg class="blogo" viewBox="0 0 100 100" aria-hidden="true"><path fill="#0096FA" d="M50 3C24 3 4 21 4 45s20 42 46 42 46-18 46-42S76 3 50 3z"/><path fill="#0096FA" d="M31 82 38 99 55 85z"/></svg>blip</div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#mudanca">O que muda</a>
+        <a href="#resposta">A resposta</a>
+        <a href="#p1">Pilar 01</a>
+        <a href="#p2">Pilar 02</a>
+        <a href="#p3">Pilar 03</a>
+        <a href="#p4">Pilar 04</a>
+        <a href="#contato">Contato</a>
+      </div>
+      <a class="nav-cta" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing/non-template-messages" target="_blank" rel="noopener">Report Oficial Meta<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-bg">
+    <div class="mesh m1"></div><div class="mesh m2"></div>
+    <div class="grid-overlay"></div>
+  </div>
+  <div class="wrap hero-in">
+    <div class="eyebrow reveal">Report Executivo · Julho 2026</div>
+    <h1 class="reveal">Mudanças na precificação do <span class="grad">WhatsApp Business Platform</span></h1>
+    <p class="reveal">A Meta redefiniu o modelo de cobrança da plataforma. Este documento consolida o que muda, os impactos previstos na camada de serviço e os quatro pilares estruturados pela Blip para preservar eficiência operacional e experiência do cliente.</p>
+    <div class="hero-tags reveal">
+      <div class="htag"><span class="pip"></span>Vigência: <b>ago–out 2026</b></div>
+      <div class="htag">Fonte: <b>guia oficial de precificação Meta</b></div>
+      <div class="htag">Escopo: <b>operações enterprise</b></div>
+    </div>
+    <div class="ruler reveal">
+      <div class="rstep">
+        <div class="when">Ago 2026<small>01 · 08 · 2026</small></div>
+        <div class="body">
+          <h4>Meta Business Agent</h4>
+          <p>Nova categoria de mensagem operada pela IA da Meta, cobrada por token: US$ 2,00 por 1 milhão de tokens — na prática, aproximadamente US$ 0,04 a 0,05 por mensagem, proporcional à complexidade. Faturamento realizado diretamente pela Meta ao cliente final.</p>
+        </div>
+      </div>
+      <div class="rstep crit">
+        <div class="when">Out 2026<small>01 · 10 · 2026</small></div>
+        <div class="body">
+          <h4>Cobrança de mensagens não-template</h4>
+          <p>Toda mensagem enviada pelo negócio fora de template — por atendimento humano ou IA de terceiros — passa a ser cobrada, inclusive dentro da janela de atendimento de 24 horas. Valor de referência no Brasil: R$ 0,04 por mensagem*.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== O QUE MUDA ===== -->
+<section class="section light-sec" id="mudanca">
+  <div class="wrap">
+    <div class="eyebrow dark reveal">01 · Contexto</div>
+    <h2 class="section-title reveal">O novo <b>modelo de cobrança</b></h2>
+    <p class="lead reveal">Cada mensagem enviada pelo negócio pertence a uma única categoria e é cobrada conforme ela. A principal mudança está nas mensagens de serviço — as respostas do atendimento — que deixam de ser gratuitas dentro da janela de 24 horas.</p>
+    <div class="cat-grid">
+      <div class="catc reveal">
+        <div class="k">Template · por mensagem</div>
+        <h4>Marketing</h4>
+        <p>Promoções, ofertas e campanhas de reengajamento iniciadas pelo negócio.</p>
+        <span class="pr">Cobrada conforme rate card</span>
+      </div>
+      <div class="catc reveal">
+        <div class="k">Template · por mensagem</div>
+        <h4>Utility</h4>
+        <p>Atualizações transacionais: pedidos, entregas, faturas e agendamentos. Categoria cobrada normalmente.</p>
+        <span class="pr">Cobrada conforme rate card</span>
+      </div>
+      <div class="catc reveal">
+        <div class="k">Template · por mensagem</div>
+        <h4>Authentication</h4>
+        <p>Códigos de verificação e autenticação de identidade.</p>
+        <span class="pr">Cobrada conforme rate card</span>
+      </div>
+      <div class="catc hl reveal">
+        <div class="k">Não-template · a principal mudança</div>
+        <h4>Service</h4>
+        <p>Respostas do atendimento — humano ou IA de terceiros — dentro da conversa. A partir de 01/10/2026, cada mensagem é cobrada, mesmo na janela de 24 horas.</p>
+        <span class="pr">R$ 0,04 por mensagem*</span>
+      </div>
+      <div class="catc reveal">
+        <div class="k">Não-template · por token</div>
+        <h4>Meta Business Agent</h4>
+        <p>IA da Meta respondendo pelo negócio. US$ 2,00 por 1 milhão de tokens; custo proporcional à complexidade da resposta. Faturado diretamente pela Meta.</p>
+        <span class="pr">A partir de 01/08/2026</span>
+      </div>
+    </div>
+    <div class="val-note reveal">
+      <span class="vtag">Pontos em validação com a Meta</span><br>
+      <b>(1)</b> Se interações conduzidas pela IA da Meta são contabilizadas como mensagens de serviço ou possuem tratamento próprio de cobrança. <b>(2)</b> Como são categorizadas conversas iniciadas por template que evoluem para atendimento humano.<br><br>
+      *Valor de referência por mensagem de serviço no Brasil. Sujeito ao rate card oficial da Meta por mercado.
+    </div>
+  </div>
+</section>
+
+<!-- ===== A RESPOSTA BLIP ===== -->
+<section class="section dark-sec" id="resposta">
+  <div class="wrap">
+    <div class="eyebrow reveal">02 · A resposta Blip</div>
+    <h2 class="section-title reveal">Quatro pilares sobre <b>know-how validado</b></h2>
+    <p class="lead reveal">A resposta da Blip ao novo modelo não parte do zero. Os quatro pilares deste documento consolidam teses já aplicadas e validadas em larga escala em operações enterprise — telecomunicações, utilities, educação, finanças e varejo — com um objetivo claro: amortizar o impacto inicial da nova precificação sem comprometer a experiência do cliente.</p>
+    <div class="kh-grid">
+      <div class="kh reveal">
+        <h4>Teses validadas em produção</h4>
+        <p>Higienização de fluxos, WhatsApp Flows e webchat embeddado já operam em clientes da base Blip. Não são conceitos em teste — são práticas com comportamento conhecido em escala.</p>
+      </div>
+      <div class="kh reveal">
+        <h4>Metodologia de diagnóstico</h4>
+        <p>O impacto é dimensionado a partir de amostras reais de tickets por frente de atendimento e do mapeamento da jornada — antes de qualquer alteração em produção.</p>
+      </div>
+      <div class="kh reveal">
+        <h4>Execução na própria plataforma</h4>
+        <p>Os quatro pilares utilizam recursos nativos da plataforma Blip, sem middleware adicional, nova stack ou dependência de terceiros.</p>
+      </div>
+    </div>
+    <div class="pidx">
+      <a class="pi reveal" href="#p1"><span class="pn">Pilar 01</span><h5>Higienização das conversas</h5><p>Menos mensagens, mais resolutivas.</p></a>
+      <a class="pi reveal" href="#p2"><span class="pn">Pilar 02</span><h5>Web Chat embeddado</h5><p>Continuidade fora da cobrança por mensagem.</p></a>
+      <a class="pi reveal" href="#p3"><span class="pn">Pilar 03</span><h5>Componentização com Flows</h5><p>Uma interação no lugar de muitas trocas.</p></a>
+      <a class="pi reveal" href="#p4"><span class="pn">Pilar 04</span><h5>Orquestração RCS</h5><p>Diversificação de canal e de custo.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PILAR 01 — HIGIENIZAÇÃO ===== -->
+<section class="section dark-sec" id="p1">
+  <div class="wrap">
+    <div class="pill-kick reveal">Pilar 01</div>
+    <div class="eyebrow reveal">Camada de serviço</div>
+    <h2 class="section-title reveal">Higienização das <b>conversas</b></h2>
+    <p class="lead reveal">Auditoria estruturada dos fluxos de atendimento para eliminar mensagens sem função resolutiva e consolidar as necessárias. Em um modelo cobrado por mensagem, cada envio precisa justificar seu custo com avanço real na jornada.</p>
+    <ul class="os-list reveal">
+      <li><span class="arrow">→</span><span><b>Eliminação de redundâncias:</b> confirmações desnecessárias, menus em cascata e mensagens de transição sem conteúdo.</span></li>
+      <li><span class="arrow">→</span><span><b>Fim da re-coleta de dados:</b> informações já conhecidas pelo negócio deixam de ser solicitadas novamente ao cliente.</span></li>
+      <li><span class="arrow">→</span><span><b>Consolidação de conteúdo:</b> mais informação por mensagem, menos trocas para o mesmo resultado.</span></li>
+      <li><span class="arrow">→</span><span><b>Nova métrica de desenho:</b> custo por conversa e taxa de resolução passam a orientar a arquitetura dos fluxos.</span></li>
+    </ul>
+    <div class="duo">
+      <!-- AS-IS -->
+      <div class="reveal">
+        <div class="phone">
+          <div class="wa-top">
+            <div class="wa-av">SN</div>
+            <div class="wa-name">[Seu Negócio]<small>online</small></div>
+          </div>
+          <div class="wa-body" id="chatAsis">
+            <div class="cost-chip" id="chipAsis"><span class="c-msgs">0 mensagens cobradas</span>·<span class="c-val">R$ 0,00</span></div>
+            <div class="bub out" data-d="0">Olá, minha internet está sem sinal<span class="time">11:02</span></div>
+            <div class="bub in" data-cost data-d="1">Olá! Bem-vindo ao nosso atendimento.<span class="time">11:02</span></div>
+            <div class="bub in" data-cost data-d="2">Para começar, escolha uma opção:<br>1. Suporte<br>2. Financeiro<br>3. Vendas<span class="time">11:02</span></div>
+            <div class="bub out" data-d="3">1<span class="time">11:03</span></div>
+            <div class="bub in" data-cost data-d="4">Você selecionou Suporte. Agora escolha:<br>1. Internet<br>2. TV<br>3. Telefone<span class="time">11:03</span></div>
+            <div class="bub out" data-d="5">1<span class="time">11:03</span></div>
+            <div class="bub in" data-cost data-d="6">Certo. Por favor, informe seu CPF.<span class="time">11:04</span></div>
+            <div class="bub out" data-d="7">123.456.789-00<span class="time">11:04</span></div>
+            <div class="bub in" data-cost data-d="8">Descreva o problema, por favor.<span class="time">11:04</span></div>
+            <div class="bub out" data-d="9">A internet caiu hoje de manhã e não voltou<span class="time">11:05</span></div>
+            <div class="bub in" data-cost data-d="10">Entendi. Vou transferir você para um atendente. Aguarde.<span class="time">11:05</span></div>
+            <div class="bub in" data-cost data-d="11">Olá, sou o atendente Carlos. Como posso ajudar?<span class="time">11:12</span></div>
+            <div class="bub in" data-cost data-d="12">Para localizar seu cadastro, pode me confirmar seu CPF?<span class="time">11:12</span></div>
+            <div class="bub out" data-d="13">De novo? 123.456.789-00<span class="time">11:13</span></div>
+            <div class="bub in" data-cost data-d="14">Obrigado. Seu modem está com as luzes acesas?<span class="time">11:14</span></div>
+            <div class="bub out" data-d="15">Sim, todas<span class="time">11:14</span></div>
+            <div class="bub in" data-cost data-d="16">E a luz de internet está verde ou vermelha?<span class="time">11:15</span></div>
+            <div class="bub out" data-d="17">Vermelha<span class="time">11:15</span></div>
+            <div class="bub in" data-cost data-d="18">Identifiquei uma instabilidade na sua região. Chamado #48213 aberto. Previsão: 4 horas.<span class="time">11:17</span></div>
+            <div class="bub in" data-cost data-d="19">Posso ajudar em algo mais?<span class="time">11:17</span></div>
+            <div class="bub out" data-d="20">Não, obrigado<span class="time">11:18</span></div>
+            <div class="bub in" data-cost data-d="21">Agradecemos o contato.<span class="time">11:18</span></div>
+            <div class="bub in" data-cost data-d="22">De 0 a 10, qual a chance de nos recomendar?<span class="time">11:18</span></div>
+          </div>
+        </div>
+        <div class="phone-cap">
+          <div class="t1 as">As-Is · fluxo atual</div>
+          <div class="t2">14 mensagens cobradas × R$ 0,04* = <b>R$ 0,56 por conversa</b></div>
+          <button class="replay" data-target="asis">Reproduzir conversa</button>
+        </div>
+      </div>
+      <!-- TO-BE -->
+      <div class="reveal">
+        <div class="phone">
+          <div class="wa-top">
+            <div class="wa-av">SN</div>
+            <div class="wa-name">[Seu Negócio]<small>online</small></div>
+          </div>
+          <div class="wa-body" id="chatTobe">
+            <div class="cost-chip good" id="chipTobe"><span class="c-msgs">0 mensagens cobradas</span>·<span class="c-val">R$ 0,00</span></div>
+            <div class="bub out" data-d="0">Olá, minha internet está sem sinal<span class="time">11:02</span></div>
+            <div class="bub in" data-cost data-d="1">Olá, Ana. Identifiquei seu plano Fibra 500MB. Vamos diagnosticar o modem em 30 segundos — toque abaixo para iniciar.<span class="time">11:02</span></div>
+            <div class="bub in" data-cost data-d="2">Diagnóstico guiado, sem digitação:
+              <div class="flow-mini">
+                <div class="ft">WhatsApp Flow · Diagnóstico</div>
+                <div class="ff">
+                  <div class="fi">Luzes do modem: acesas</div>
+                  <div class="fi">Luz de internet: vermelha</div>
+                  <div class="fi">Reiniciou o modem: sim</div>
+                </div>
+                <div class="fbtn">Enviar diagnóstico</div>
+              </div>
+            <span class="time">11:03</span></div>
+            <div class="bub out" data-d="3">Diagnóstico enviado<span class="time">11:03</span></div>
+            <div class="bub in" data-cost data-d="4">Diagnóstico concluído: instabilidade na sua região. Chamado #48213 aberto automaticamente. Previsão: 4 horas — você será avisada quando normalizar.<span class="time">11:04</span></div>
+            <div class="bub in" data-cost data-d="5">Para acompanhar em tempo real ou falar com um especialista:
+              <div class="wabtn">Continuar no atendimento Blip</div>
+            <span class="time">11:04</span></div>
+            <div class="bub out" data-d="6">Perfeito, obrigada<span class="time">11:05</span></div>
+            <div class="bub in" data-cost data-d="7">Nós que agradecemos. Avalie o atendimento em um toque.<span class="time">11:05</span></div>
+          </div>
+        </div>
+        <div class="phone-cap">
+          <div class="t1 to">To-Be · fluxo higienizado</div>
+          <div class="t2">5 mensagens cobradas × R$ 0,04* = <b>R$ 0,20 por conversa</b></div>
+          <button class="replay" data-target="tobe">Reproduzir conversa</button>
+        </div>
+      </div>
+    </div>
+    <div class="duo-verdict reveal">
+      <div class="dv">−64%</div>
+      <p>de custo na jornada simulada, com resolução em menos etapas e sem re-coleta de dados. O mesmo atendimento, redesenhado para o novo modelo de cobrança.</p>
+    </div>
+  </div>
+</section>
+<!-- ===== PILAR 02 — WEB CHAT EMBEDDADO ===== -->
+<section class="section light-sec" id="p2">
+  <div class="wrap">
+    <div class="pill-kick reveal" style="color:#94A0BC">Pilar 02</div>
+    <div class="eyebrow dark reveal">Continuidade de canal</div>
+    <h2 class="section-title reveal">Web Chat <b>embeddado</b> na conversa</h2>
+    <div class="split">
+      <div>
+        <p class="lead reveal">Um CTA dentro da conversa abre o webchat Blip no WebView do próprio WhatsApp. O cliente permanece no aplicativo, e o atendimento continua exatamente de onde parou — sem novo login, sem novo contexto.</p>
+        <ul class="os-list reveal">
+          <li><span class="arrow">→</span><span><b>Contexto preservado:</b> o identificador único do contato na plataforma Blip conecta os dois canais, mantendo histórico e rastreabilidade.</span></li>
+          <li><span class="arrow">→</span><span><b>Transição sem ruptura:</b> a janela do webchat pode ser fechada e reaberta sem perda da conversa em andamento.</span></li>
+          <li><span class="arrow">→</span><span><b>Fora do escopo de cobrança por mensagem:</b> interações conduzidas no webchat não são contabilizadas como mensagens do WhatsApp Business Platform.</span></li>
+          <li><span class="arrow">→</span><span><b>Aplicação indicada:</b> atendimentos longos e de alta troca de mensagens — suporte técnico, negociação e acompanhamento de casos.</span></li>
+        </ul>
+        <div class="pill-note reveal"><b>Frentes prioritárias:</b> vendas, recarga e suporte, com integração ao CRM para manutenção do contexto entre canais.</div>
+      </div>
+      <div class="reveal">
+        <div class="phone" id="wvPhone">
+          <div class="wa-top">
+            <div class="wa-av">SN</div>
+            <div class="wa-name">[Seu Negócio]<small>online</small></div>
+          </div>
+          <div class="wa-body" style="overflow:hidden">
+            <div class="bub out static">O chamado já foi aberto? Queria acompanhar a previsão<span class="time">11:04</span></div>
+            <div class="bub in static">Para acompanhar seu caso em tempo real com um especialista:
+              <div class="wabtn" id="wvCta">Continuar no atendimento Blip<span class="tap" id="wvTap"></span></div>
+            <span class="time">11:04</span></div>
+            <div class="sheet slide" id="wvSheet">
+              <div class="grab"></div>
+              <div class="sheet-head">
+                <div class="sav"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 3C24 3 4 21 4 45s20 42 46 42 46-18 46-42S76 3 50 3z"/><path fill="#fff" d="M31 82 38 99 55 85z"/></svg></div>
+                <div class="sn">Atendimento · [Seu Negócio]<small>webchat Blip · dentro do WhatsApp</small></div>
+              </div>
+              <div class="sheet-body">
+                <div class="wc-ctx wcv">Conversa continuada do WhatsApp · caso #48213</div>
+                <div class="wc-bub bot wcv">Olá, Ana. Estou com o seu diagnóstico em tela: instabilidade regional, chamado #48213 aberto às 11:04.</div>
+                <div class="wc-bub me wcv">Consigo acompanhar a previsão por aqui?</div>
+                <div class="wc-bub bot wcv">Sim. A previsão atual é de normalização em até 4 horas. Este painel será atualizado em tempo real e você pode fechar e voltar quando quiser.</div>
+              </div>
+              <div class="sheet-input">Escreva sua mensagem<span class="snd"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PILAR 03 — COMPONENTIZAÇÃO / FLOWS ===== -->
+<section class="section dark-sec" id="p3">
+  <div class="wrap">
+    <div class="pill-kick reveal">Pilar 03</div>
+    <div class="eyebrow reveal">Estrutura sobre texto livre</div>
+    <h2 class="section-title reveal">Componentização com <b>WhatsApp Flows</b></h2>
+    <div class="split">
+      <div class="reveal">
+        <div class="phone">
+          <div class="wa-top">
+            <div class="wa-av">SN</div>
+            <div class="wa-name">[Seu Negócio]<small>online</small></div>
+          </div>
+          <div class="wa-body" style="overflow:hidden">
+            <div class="bub in static">Vamos agendar sua visita técnica. Toque abaixo para escolher data e período.
+              <div class="wabtn">Abrir agendamento</div>
+            <span class="time">09:12</span></div>
+            <div class="sheet">
+              <div class="grab"></div>
+              <div class="fs-title">
+                <div class="ft1">Agendamento de visita técnica</div>
+                <div class="ft2">Etapa 2 de 3 · endereço confirmado</div>
+              </div>
+              <div class="fs-steps"><span class="on"></span><span class="on"></span><span></span></div>
+              <div class="fs-body">
+                <div class="fs-q">Qual período é melhor para você?</div>
+                <div class="fs-opt"><span class="rad"></span>Amanhã · manhã (8h–12h)</div>
+                <div class="fs-opt sel"><span class="rad"></span>Amanhã · tarde (13h–18h)</div>
+                <div class="fs-opt"><span class="rad"></span>Quinta-feira · manhã (8h–12h)</div>
+                <div class="fs-opt"><span class="rad"></span>Quinta-feira · tarde (13h–18h)</div>
+              </div>
+              <div class="fs-cta">Continuar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="lead reveal">Flows dinâmicos e multi-página substituem sequências longas de perguntas e respostas por uma única interação estruturada, dentro da própria conversa.</p>
+        <ul class="os-list reveal">
+          <li><span class="arrow">→</span><span><b>Um componente, uma jornada:</b> diagnóstico, agendamento, cadastro e qualificação resolvidos em uma interação.</span></li>
+          <li><span class="arrow">→</span><span><b>Compressão de trocas:</b> sequências de 8 a 12 mensagens são substituídas por um único envio com Flow.</span></li>
+          <li><span class="arrow">→</span><span><b>Dados estruturados desde a origem:</b> menos erro de digitação, menos retrabalho, integração direta com sistemas.</span></li>
+          <li><span class="arrow">→</span><span><b>Orquestração disciplinada:</b> regras rígidas de condução — uma informação por vez, sem mensagens de preenchimento.</span></li>
+        </ul>
+        <div class="pill-note reveal"><b>Aplicação prioritária</b> nas frentes de vendas, suporte e retenção, onde a coleta de dados concentra o maior volume de trocas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PILAR 04 — RCS ===== -->
+<section class="section light-sec" id="p4">
+  <div class="wrap">
+    <div class="pill-kick reveal" style="color:#94A0BC">Pilar 04</div>
+    <div class="eyebrow dark reveal">Diversificação de canal</div>
+    <h2 class="section-title reveal">Orquestração multicanal com <b>RCS</b></h2>
+    <div class="split">
+      <div>
+        <p class="lead reveal">O RCS complementa o WhatsApp como canal rico no ecossistema Android, operado na mesma plataforma Blip — o canal certo para cada momento da jornada, com visão única do contato.</p>
+        <ul class="os-list reveal">
+          <li><span class="arrow">→</span><span><b>Rich media nativo:</b> carrosséis, cards e botões diretamente no aplicativo de mensagens padrão do Android.</span></li>
+          <li><span class="arrow">→</span><span><b>Diversificação de custo:</b> menor dependência de um único canal e de um único modelo de precificação.</span></li>
+          <li><span class="arrow">→</span><span><b>Visão única do contato:</b> WhatsApp, RCS e webchat orquestrados na mesma plataforma, com o mesmo identificador.</span></li>
+          <li><span class="arrow">→</span><span><b>Roteamento por jornada:</b> a escolha do canal passa a considerar custo, alcance e formato mais adequado a cada caso de uso.</span></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="phone rcs">
+          <div class="rcs-top">
+            <div class="rcs-av">SN</div>
+            <div class="rcs-name">[Seu Negócio]<small>Remetente verificado · RCS</small></div>
+          </div>
+          <div class="rcs-body">
+            <div class="rcs-card">
+              <div class="rcs-img"></div>
+              <div class="rc-in">
+                <h5>Sua fatura de julho está disponível</h5>
+                <p>Vencimento em 10/07 · R$ 129,90. Pague pelo aplicativo ou copie o código.</p>
+              </div>
+              <div class="rcs-btns"><div>Ver fatura</div><div>Copiar código</div></div>
+            </div>
+            <div class="rcs-bub out">Consigo mudar a data de vencimento?</div>
+            <div class="rcs-bub in">Sim. Escolha a nova data abaixo — a alteração vale a partir da próxima fatura.</div>
+            <div class="rcs-chips"><span>Dia 05</span><span>Dia 15</span><span>Dia 25</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ENCERRAMENTO ===== -->
+<section class="closing" id="contato">
+  <div class="wrap">
+    <h2 class="reveal">Obrigado<span class="grad">.</span></h2>
+    <p class="reveal">Para mais dúvidas sobre o novo modelo de precificação ou sobre os pilares apresentados neste documento, <b>entre em contato com o seu time de atendimento Blip</b>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fl"><div class="brand"><svg class="blogo" viewBox="0 0 100 100" aria-hidden="true"><path fill="#0096FA" d="M50 3C24 3 4 21 4 45s20 42 46 42 46-18 46-42S76 3 50 3z"/><path fill="#0096FA" d="M31 82 38 99 55 85z"/></svg>blip</div></div>
+    <p class="disc">Documento confidencial · Blip © 2026. Valores e políticas de cobrança sujeitos à documentação oficial da Meta e ao rate card vigente por mercado. Pontos sinalizados como "em validação" aguardam confirmação oficial da Meta. Jornadas e valores de conversa apresentados são simulações ilustrativas.</p>
+  </div>
+</footer>
+
+<script>
+/* GATE */
+const PASS='BlipServiceJuly2026';
+const gate=document.getElementById('gate'),gc=document.getElementById('gCard'),
+      gp=document.getElementById('gPass'),gb=document.getElementById('gBtn'),ge=document.getElementById('gErr');
+document.body.style.overflow='hidden';
+function tryGate(){
+  if(gp.value===PASS){gate.classList.add('hide');document.body.style.overflow='';}
+  else{ge.style.opacity=1;gc.classList.add('shake');setTimeout(()=>gc.classList.remove('shake'),520);gp.select();}
+}
+gb.addEventListener('click',tryGate);
+gp.addEventListener('keydown',e=>{if(e.key==='Enter')tryGate();});
+
+/* NAV scrolled */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+/* REVEAL */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* CHAT ANIMATION (Pilar 01) */
+const BRL=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+const MSG_PRICE=0.04, STEP=620;
+const chats={asis:{chat:document.getElementById('chatAsis'),chip:document.getElementById('chipAsis'),timers:[]},
+             tobe:{chat:document.getElementById('chatTobe'),chip:document.getElementById('chipTobe'),timers:[]}};
+function resetChat(k){
+  const c=chats[k];
+  c.timers.forEach(t=>clearTimeout(t));c.timers=[];
+  c.chat.querySelectorAll('.bub').forEach(b=>b.classList.remove('show'));
+  c.chip.querySelector('.c-msgs').textContent='0 mensagens cobradas';
+  c.chip.querySelector('.c-val').textContent='R$ 0,00';
+  c.chat.scrollTop=0;
+}
+function playChat(k){
+  resetChat(k);
+  const c=chats[k],bubs=[...c.chat.querySelectorAll('.bub')];
+  let count=0,cost=0;
+  bubs.forEach(b=>{
+    const t=setTimeout(()=>{
+      b.classList.add('show');
+      if(b.hasAttribute('data-cost')){
+        count++;cost+=MSG_PRICE;
+        c.chip.querySelector('.c-msgs').textContent=count+(count===1?' mensagem cobrada':' mensagens cobradas');
+        c.chip.querySelector('.c-val').textContent=BRL.format(cost);
+        c.chip.classList.add('pop');setTimeout(()=>c.chip.classList.remove('pop'),170);
+      }
+      c.chat.scrollTo({top:c.chat.scrollHeight,behavior:'smooth'});
+    },parseInt(b.dataset.d||0)*STEP);
+    c.timers.push(t);
+  });
+}
+document.querySelectorAll('.replay').forEach(btn=>btn.addEventListener('click',()=>playChat(btn.dataset.target)));
+const jio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){playChat(e.target.id==='chatAsis'?'asis':'tobe');jio.unobserve(e.target);}
+}),{threshold:.35});
+jio.observe(chats.asis.chat);jio.observe(chats.tobe.chat);
+
+/* WEBVIEW ANIMATION (Pilar 02) */
+const wvSheet=document.getElementById('wvSheet'),wvTap=document.getElementById('wvTap'),
+      wvCta=document.getElementById('wvCta'),wvPhone=document.getElementById('wvPhone'),
+      wvItems=[...wvSheet.querySelectorAll('.wcv')];
+let wvTimers=[];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function wvReset(){
+  wvTimers.forEach(clearTimeout);wvTimers=[];
+  wvSheet.classList.remove('up');wvItems.forEach(i=>i.classList.remove('show'));
+  wvTap.classList.remove('go');wvCta.classList.remove('hot');
+}
+function wvCycle(){
+  wvReset();
+  const T=(fn,ms)=>wvTimers.push(setTimeout(fn,ms));
+  T(()=>{wvTap.classList.add('go');wvCta.classList.add('hot');},1000);
+  T(()=>{wvCta.classList.remove('hot');wvSheet.classList.add('up');},1850);
+  wvItems.forEach((it,i)=>T(()=>it.classList.add('show'),2700+i*850));
+  T(wvCycle,2700+wvItems.length*850+3600);
+}
+if(RM){wvSheet.classList.add('up');wvItems.forEach(i=>i.classList.add('show'));}
+else{
+  const wio=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){wvCycle();}else{wvReset();}
+  }),{threshold:.4});
+  wio.observe(wvPhone);
+}
+</script>
+</body>
+</html>
